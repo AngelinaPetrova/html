@@ -16,6 +16,12 @@ function operatorPressed(ev) {
 document.querySelector('.calculator .eq').addEventListener('click', eqPressed)
 function eqPressed() {
     const input = document.querySelector('.input');
+    if (eval(input.value) === Infinity) {
+        input.value = 'Infinity';
+    }
+    if (eval(input.value) === undefined) {
+        input.value = '0';
+    }
     input.value = eval(input.value);
 }
 document.querySelector('.calculator .clean').addEventListener('click', cleanPressed)
@@ -23,17 +29,8 @@ function cleanPressed() {
     const input = document.querySelector('.input');
     input.value = '';
 }
-function decimal (argument) {
+document.querySelector('.calculator .back').addEventListener('click', backPressed);
+function backPressed() {
     const input = document.querySelector('.input');
-		if (inputResult) 
-		{
-			input = "0.";
-			inputResult = false;
-		}
-		else
-		{
-			if (input.indexOf(".") == -1)
-				inputResult += ".";
-		}
-		document.querySelector('.input') = input;
-};
+    input.value = input.value.substring(0, input.value.length - 1);
+}
